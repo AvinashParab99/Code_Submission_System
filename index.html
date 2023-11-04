@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/python/python.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/javascript/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/Codestyle.css') }}">
+    <script src="{{ url_for('static', filename='/style.js') }}"></script>
+</head>
+<body>
+    <h1 >Code Submission</h1>
+    <p>Problem Statement:</p>
+    <pre id="problem" style="border: 1px solid #ccc;"></pre>
+    <form action="/submit" method="POST">
+        <label for="language" class="lab">Select a language:</label>
+        <select name="language" id="language" class="op">
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+        </select>
+        <p >Your solution:</p>
+        <textarea name="code"  id="code" ></textarea>
+        <input type="submit" value="Submit" class="submit-btn">
+    </form>
+
+    <script>
+        var problemText = document.getElementById('problem');
+        var codeEditor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            mode: 'python',  // Default to Python mode
+            lineNumbers: true
+        });
+
+        // Load the problem statement from the 'problem.txt' file
+        fetch('/problem')
+            .then(response => response.text())
+            .then(data => {
+                problemText.textContent = data;
+            });
+    </script>
+</body>
+</html>

@@ -8,4 +8,4 @@ This is a web application built with Python and Flask that allows users to submi
 - Flask 
   
 #License
-LICENSE
+[MIT  license](LICENSE)

@@ -7,5 +7,5 @@ This is a web application built with Python and Flask that allows users to submi
 - Python 
 - Flask 
   
-##License
+## License
 [MIT  license](LICENSE)
